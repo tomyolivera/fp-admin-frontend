@@ -1,15 +1,29 @@
+import {useContext} from "react";
+import {useNavigate} from "react-router-dom";
+import UserContext from "../../../Context/UserContext";
 import Button from "../../Form/Button"
 
 const HeaderAuthButtons = () => {
+    const navigate = useNavigate()
+    const { isAuthenticated, setToken } = useContext(UserContext)
+
+    const handleLogout = () => {
+        localStorage.removeItem("token")
+        setToken("")
+        navigate("/")
+    }
+
     return (
         <div className="flex gap-2">
-            <Button href="/register" className="bg-green-100 hover:bg-green-300 text-green-800">
-                Sign In
-            </Button>
-
-            <Button href="login" className="bg-indigo-500 hover:bg-indigo-700">
-                Sign Up
-            </Button>
+            {
+                isAuthenticated
+                    ? <Button onClick={handleLogout} className="button-red">
+                        Cerrar Sesión
+                    </Button>
+                    : <Button href="login" className="button-indigo">
+                        Iniciar Sesión
+                    </Button>
+            }
         </div>
     )
 }

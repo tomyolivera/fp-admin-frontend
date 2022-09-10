@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import {ButtonHTMLAttributes, ReactNode} from "react";
+import {Link, useNavigate} from 'react-router-dom'
 import classNames from 'classnames'
 
 type TColor = 'slate' | 'gray' | 'zinc' | 'neutral' | 'stone' |
@@ -8,36 +9,23 @@ type TColor = 'slate' | 'gray' | 'zinc' | 'neutral' | 'stone' |
 'indigo' | 'purple' | 'fuchsia' | 'pink' | 'rose'
 
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    children: React.ReactNode
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    children: ReactNode
     href?: string
 }
 
-const Button = ({ children, href, className }: ButtonProps) => {
-    if(href) {
-        return (
-            <Link
-                to={href}
-                className={classNames(`
-                    flex px-4 py-2 rounded-md shadow-sm
-                    text-base font-medium
-                    border border-transparent
-                    text-white
-                `) + className}
-            >
-                {children}
-            </Link>
-        )
-    }
+const Button = ({ children, href, ...props }: ButtonProps) => {
+    const navigate = useNavigate()
 
     return (
         <button
+            onClick={() => navigate(href || "")}
+            {...props}
             className={classNames(`
-                flex justify-center w-100 px-4 py-2 rounded-md shadow-sm
+                px-4 py-2 rounded-md shadow-sm
                 text-base font-medium
                 border border-transparent
-                text-white
-            `) + className}
+            `) + props.className}
         >
             { children }
         </button>

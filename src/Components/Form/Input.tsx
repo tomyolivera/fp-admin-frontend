@@ -9,7 +9,9 @@ const Input = ({ name, type, placeholder, className }: InputProps) => {
                                 ? 'password'
                                 : name.includes('email')
                                     ? 'email'
-                                    : type
+                                    : name.includes('price') || name.includes('id')
+                                        ? 'number'
+                                        : type
 
     return (
         <>

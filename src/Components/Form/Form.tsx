@@ -7,16 +7,16 @@ import Input from "./Input"
 interface FormProps {
     initialValues: object
     onSubmit: (values: any) => Promise<void>
+    buttonLabel: string
 }
 
-const Form = ({ initialValues, onSubmit }: FormProps) => {
+const Form = ({ initialValues, onSubmit, buttonLabel }: FormProps) => {
     return (
         <Formik
             initialValues={initialValues}
             onSubmit={async (values, {setSubmitting}) => {
                 setSubmitting(true)
                 await onSubmit(values)
-                // setSubmitting(false)
             }}
         >
             {({ isSubmitting }) => (
@@ -30,8 +30,8 @@ const Form = ({ initialValues, onSubmit }: FormProps) => {
                         ))
                     }
 
-                    <Button className={classNames("bg-indigo-500 hover:bg-indigo-700")}>
-                        { isSubmitting ? "Loading..." : "Login" }
+                    <Button className={"button-indigo"} disabled={isSubmitting} >
+                        { isSubmitting ? "Cargando..." : buttonLabel }
                     </Button>
                 </FormikForm>
             )}

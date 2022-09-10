@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button-blue {@apply bg-blue-500 hover:bg-blue-700 text-white disabled:bg-blue-100}
+.button-red {@apply bg-red-200 hover:bg-red-400 text-red-900 disabled:bg-red-100}
+.button-green {@apply bg-green-300 hover:bg-green-500 text-green-900 disabled:bg-green-100}
+.button-orange {@apply bg-orange-300 hover:bg-orange-500 text-orange-900 disabled:bg-orange-100}
+.button-yellow {@apply bg-yellow-300 hover:bg-yellow-500 text-yellow-900 disabled:bg-yellow-100}
+.button-gray {@apply bg-gray-300 hover:bg-gray-500 text-gray-900 disabled:bg-gray-100}
+.button-purple {@apply bg-purple-300 hover:bg-purple-500 text-purple-900 disabled:bg-purple-100}
+.button-pink {@apply bg-pink-300 hover:bg-pink-500 text-pink-900 disabled:bg-pink-100}
+.button-indigo {@apply bg-indigo-500 hover:bg-indigo-700 text-white disabled:bg-indigo-100}
