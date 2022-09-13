@@ -14,7 +14,7 @@ const ProductAttributes = () => {
     const [thead] = useState(["ID", "Slug", "Nombre", "Valores"])
 
     const getAttrs = async () => {
-        const res = await axios.get("http://localhost:8000/api/attributes", {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/attributes`, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
         setAttrs(res.data.data)

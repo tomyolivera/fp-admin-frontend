@@ -5,8 +5,6 @@ import {IProduct} from "../../../Interfaces/IProduct"
 import Table from "../../../Components/Table/Table"
 import ProductTable from "../../../Components/Products/ProductTable"
 import Loading from "../../../Components/Layout/Loading/Loading"
-import ProductForm from "../Forms/ProductForm"
-import Pagination from "../../../Components/Table/Pagination";
 
 const Products = () => {
     const { token } = useContext(UserContext)
@@ -15,7 +13,7 @@ const Products = () => {
     const [loading, setLoading] = useState(true)
 
     const getProducts = async () => {
-        const res = await axios.get("http://localhost:8000/api/products", {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/products`, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
         setProducts(res.data.data)

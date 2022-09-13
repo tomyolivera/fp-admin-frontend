@@ -14,7 +14,7 @@ const ProductCategories = () => {
     const [thead] = useState(["ID", "Slug", "Nombre"])
 
     const getCategories = async () => {
-        const res = await axios.get("http://localhost:8000/api/categories", {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/categories`, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
         setCategories(res.data.data)
