@@ -1,7 +1,7 @@
 import {IProduct} from "../../Interfaces/IProduct"
 import TableButtonsAction from "../Table/TableButtonsAction"
 
-const ProductTable = ({ sku, name, price, list_price  }: IProduct) => {
+const ProductTable = ({ sku, name, price, list_price }: IProduct) => {
     return (
         <tr>
             <td className={"px-6 py-4 whitespace-nowrap"}>{sku}</td>

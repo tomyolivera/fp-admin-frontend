@@ -17,10 +17,10 @@ const HeaderAuthButtons = () => {
         <div className="flex gap-2">
             {
                 isAuthenticated
-                    ? <Button onClick={handleLogout} className="button-red">
+                    ? <Button onClick={handleLogout} className="btn-red-compact">
                         Cerrar Sesión
                     </Button>
-                    : <Button href="login" className="button-indigo">
+                    : <Button href="login" className="btn-indigo-compact">
                         Iniciar Sesión
                     </Button>
             }

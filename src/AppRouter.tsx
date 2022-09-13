@@ -5,6 +5,7 @@ import UserContext from "./Context/UserContext"
 import ModalContext from "./Context/ModalContext"
 
 const Home = lazy(() => import("./Pages/Home"))
+const Dashboard = lazy(() => import("./Pages/Dashboard"))
 const Login = lazy(() => import("./Pages/Login"))
 
 {/* Products & Categories & Attributes & Forms */}
@@ -29,6 +30,7 @@ const AppRouter = () => {
             <Suspense fallback={<Loading />}>
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/login" element={<Login />} />
                     {/* <Route path="*" element={<p>Error 404</p>} /> */}
 

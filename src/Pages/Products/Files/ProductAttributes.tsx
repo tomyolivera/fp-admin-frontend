@@ -3,10 +3,9 @@ import axios from "axios"
 
 import UserContext from "../../../Context/UserContext"
 import Table from "../../../Components/Table/Table"
-import Button from "../../../Components/Form/Button"
-import ProductAttributeTable from "../../../Components/Products/ProductAttributeTable";
-import Loading from "../../../Components/Layout/Loading/Loading";
-import {IProductAttribute} from "../../../Interfaces/IProduct";
+import ProductAttributeTable from "../../../Components/Products/ProductAttributeTable"
+import Loading from "../../../Components/Layout/Loading/Loading"
+import {IProductAttribute} from "../../../Interfaces/IProduct"
 
 const ProductAttributes = () => {
     const { token } = useContext(UserContext)
@@ -21,6 +20,14 @@ const ProductAttributes = () => {
         setAttrs(res.data.data)
     }
 
+    const handleEdit = (id: number) => {
+
+    }
+
+    const handleDelete = (id: number) => {
+
+    }
+
     useEffect(() => {
         (async () => {
             await getAttrs()
@@ -32,17 +39,13 @@ const ProductAttributes = () => {
 
     return (
         <div>
-            <Button href={"/attributes/add"} className={"button-blue"}>
-                Añadir Atributo
-            </Button>
-
-            <Table head={thead}>
-                {
-                    attrs.map((attr, index) => (
-                        <ProductAttributeTable {...attr} key={index} />
-                    ))
-                }
-            </Table>
+            <Table
+                head={thead}
+                createButtonLabel={"Atributo"}
+                hrefCreateButton={"/attributes/add"}
+                Element={ProductAttributeTable}
+                elements={attrs}
+            />
         </div>
     )
 }

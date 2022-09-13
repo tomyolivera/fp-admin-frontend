@@ -4,17 +4,19 @@ import SidebarContext from "../../../Context/SidebarContext";
 
 interface SidebarElementProps {
     title: string
+    description?: string|boolean
     href?: string
     Icon?: FC
 }
 
-const SidebarElement = ({ title, href, Icon, ...props }: SidebarElementProps) => {
+const SidebarElement = ({ title, description, href, Icon, ...props }: SidebarElementProps) => {
     const { _location, setLocation } = useContext(SidebarContext)
 
     if(!href || !Icon) {
         return (
-            <div className={"w-full text-left pl-5 py-1 text-gray-500"}>
-                <p className={"text-lg"}>{title}</p>
+            <div className={"flex flex-col w-full text-left pl-5 py-1 text-gray-500"}>
+                <p className={"text-2xl"}>{title}</p>
+                <cite className={"text-sm"}>{description}</cite>
             </div>
         )
     }

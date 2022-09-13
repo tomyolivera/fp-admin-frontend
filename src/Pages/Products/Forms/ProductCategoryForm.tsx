@@ -1,10 +1,9 @@
 import {useContext, useState} from "react"
-import Form from "../../../Components/Form/Form"
+import {useNavigate} from "react-router-dom"
 import axios from "axios";
-import UserContext from "../../../Context/UserContext";
-import {useNavigate} from "react-router-dom";
-import Button from "../../../Components/Form/Button";
-import {IProductCategory} from "../../../Interfaces/IProduct";
+import Form from "../../../Components/Form/Form"
+import UserContext from "../../../Context/UserContext"
+import {IProductCategory} from "../../../Interfaces/IProduct"
 
 const ProductCategoryForm = () => {
     const { token } = useContext(UserContext)
@@ -23,11 +22,11 @@ const ProductCategoryForm = () => {
 
     return (
         <>
-            <Button className={"button-gray mb-5"} href={"/categories"}>Volver</Button>
             <Form
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
                 buttonLabel={"Guardar"}
+                buttonVolverHref={"/categories"}
             />
         </>
     )

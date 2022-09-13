@@ -1,10 +1,10 @@
 import {useContext, useState} from "react"
+import {useNavigate} from "react-router-dom"
+import axios from "axios"
+
 import Form from "../../../Components/Form/Form"
-import axios from "axios";
-import UserContext from "../../../Context/UserContext";
-import {useNavigate} from "react-router-dom";
-import Button from "../../../Components/Form/Button";
-import {IProduct} from "../../../Interfaces/IProduct";
+import UserContext from "../../../Context/UserContext"
+import {IProduct} from "../../../Interfaces/IProduct"
 
 const ProductForm = () => {
     const { token } = useContext(UserContext)
@@ -17,7 +17,7 @@ const ProductForm = () => {
     })
 
     const handleSubmit = async (values: any) => {
-        const res = await axios.post("http://localhost:8000/api/products", values, {
+        await axios.post("http://localhost:8000/api/products", values, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
         navigate("/products")
@@ -25,11 +25,11 @@ const ProductForm = () => {
 
     return (
         <>
-            <Button className={"button-gray mb-5"} href={"/products"}>Volver</Button>
             <Form
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
                 buttonLabel={"Guardar"}
+                buttonVolverHref={"/products"}
             />
         </>
     )
