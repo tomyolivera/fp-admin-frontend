@@ -1,11 +1,11 @@
 import {InputHTMLAttributes} from "react"
 import {Field, FieldArray} from 'formik'
 import Button from "./Button";
-import {FaMinus, FaPlus} from "react-icons/all";
+import {FaMinus, FaPlus} from "react-icons/all"
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     name: string,
-    arr?: Array<any>
+    arr?: any[]
 }
 
 const InputForm = ({ name, ...props }: InputProps) => (
@@ -29,21 +29,13 @@ const InputForm = ({ name, ...props }: InputProps) => (
 )
 
 const Input = ({ name, type, arr, ...props }: InputProps) => {
-    const intelligentType = name.includes('password')
-                                ? 'password'
-                                : name.includes('email')
-                                    ? 'email'
-                                    : name.includes('price') || name.includes('id')
-                                        ? 'number'
-                                        : type
-
     if(name.endsWith("s")) return (
         <FieldArray name={name}>
             {({ push, remove }) => (
                 <div>
                     {arr && arr.length >= 0 && arr.map((value: any, index: number) => (
                             <div key={index}>
-                                <InputForm name={`${name}.${index}`} type={intelligentType} />
+                                <InputForm name={`${name}.${index}`} type={type} />
                                 {
                                     index > 0 && <Button className={"btn-red mt-2"} type="button" onClick={() => remove(index)}>
                                         <FaMinus />
@@ -62,7 +54,7 @@ const Input = ({ name, type, arr, ...props }: InputProps) => {
 
     return (
         <>
-            <InputForm name={name} type={intelligentType} />
+            <InputForm name={name} type={type} {...props} />
         </>
     )
 }

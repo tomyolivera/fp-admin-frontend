@@ -1,5 +1,5 @@
 import SidebarElement from "./SidebarElement";
-import {AiFillTags, FaTasks, MdCategory, MdSpaceDashboard} from "react-icons/all";
+import {AiFillTags, FaMoneyBillAlt, FaTasks, MdCategory, MdSpaceDashboard} from "react-icons/all";
 import Divider from "./Divider";
 import {useContext} from "react";
 import UserContext from "../../../Context/UserContext";
@@ -20,6 +20,8 @@ const SidebarLinks = () => {
             <SidebarElement title={"Categorias"} href={"/categories"} Icon={MdCategory} />
             <SidebarElement title={"Atributos"} href={"/attributes"} Icon={AiFillTags} />
             <Divider />
+            <SidebarElement title={"Administración"} />
+            <SidebarElement title={"Costos"} href={"/bills"} Icon={FaMoneyBillAlt} />
         </div>
     )
 }

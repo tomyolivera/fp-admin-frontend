@@ -3,6 +3,8 @@ export interface IProduct {
     name: string
     list_price: number
     price: number
+    categories: IProductCategory[]
+    attributes: IProductAttribute[]
 }
 
 export interface IProductCategory {
@@ -15,5 +17,5 @@ export interface IProductAttribute {
     id?: number
     slug: string
     name: string
-    values: Array<string>
+    values: string[]
 }

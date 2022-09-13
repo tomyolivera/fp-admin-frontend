@@ -4,6 +4,7 @@ import axios from "axios"
 import Form from "../../../Components/Form/Form"
 import UserContext from "../../../Context/UserContext"
 import {IProductAttribute} from "../../../Interfaces/IProduct"
+import {useNavigate} from "react-router-dom";
 
 interface ProductAttributeFormProps {
     values?: IProductAttribute
@@ -12,6 +13,7 @@ interface ProductAttributeFormProps {
 }
 
 const ProductAttributeForm = ({values, setInForm, getAttrs}: ProductAttributeFormProps) => {
+    const navigate = useNavigate()
     const { token } = useContext(UserContext)
     const [initialValues] = useState<IProductAttribute>(values || {
         name: "",
@@ -23,8 +25,7 @@ const ProductAttributeForm = ({values, setInForm, getAttrs}: ProductAttributeFor
         await axios.post("http://localhost:8000/api/attributes", values, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
-        await getAttrs()
-        setInForm(false)
+        navigate("/attributes")
     }
 
     return (
@@ -33,8 +34,7 @@ const ProductAttributeForm = ({values, setInForm, getAttrs}: ProductAttributeFor
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
                 buttonLabel={"Guardar"}
-                setInForm={setInForm}
-                arr={initialValues.values}
+                buttonVolverHref={"/attributes"}
             />
         </>
     )

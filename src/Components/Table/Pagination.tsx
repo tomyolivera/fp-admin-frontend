@@ -35,7 +35,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: Paginat
                 <ul className='flex pl-0 rounded list-none flex-wrap border-2'>
                     <li>
                         {pageNumbers.map((number, i) => (
-                            <>
+                            <span key={i}>
                                 {
                                     i === 0 &&
                                     <Button onClick={() => paginate(currentPage - 1)} disabled={currentPage <= 1} className={"rounded-none btn-white"}>
@@ -59,7 +59,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: Paginat
                                         Next
                                     </Button>
                                 }
-                            </>
+                            </span>
                         ))}
                     </li>
                 </ul>
