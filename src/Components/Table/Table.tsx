@@ -2,6 +2,7 @@ import TableHead from "./TableHead"
 import {FC, ReactNode, useEffect, useState} from "react"
 import Button from "../Form/Button";
 import Pagination from "./Pagination";
+import ReactPaginate from "react-paginate";
 
 interface TableProps {
     head: Array<string>
@@ -37,6 +38,20 @@ const Table = ({ head, createButtonLabel, hrefCreateButton, Element, elements }:
                         totalPosts={elements.length}
                     />
                 }
+
+                {/*<ReactPaginate*/}
+                {/*    breakLabel={"..."}*/}
+                {/*    onPageChange={(e) => paginate(e.selected + 1)}*/}
+                {/*    pageCount={Math.ceil(elements.length / postsPerPage)}*/}
+                {/*    className={"flex flex-wrap self-center py-2 rounded border-2"}*/}
+                {/*    pageLinkClassName={"btn-white py-2 px-3"}*/}
+                {/*    nextLinkClassName={"btn-white py-2 px-3"}*/}
+                {/*    previousLinkClassName={"btn-white py-2 px-3"}*/}
+                {/*    activeLinkClassName={"btn-blue-compact py-2 px-3"}*/}
+                {/*    pageRangeDisplayed={3}*/}
+                {/*    previousLabel={"Prev"}*/}
+                {/*    nextLabel={"Next"}*/}
+                {/*/>*/}
             </div>
 
             <div className="flex flex-col mt-5">

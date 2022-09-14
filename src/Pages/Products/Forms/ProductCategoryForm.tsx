@@ -1,10 +1,13 @@
 import {useContext, useState} from "react"
 import {useNavigate} from "react-router-dom"
 import axios from "axios";
-import Form from "../../../Components/Form/Form"
 import UserContext from "../../../Context/UserContext"
 import {IProductCategory} from "../../../Interfaces/IProduct"
 import ProductContext from "../../../Context/ProductContext";
+import Button from "../../../Components/Form/Button";
+import {Formik, Form} from "formik";
+import Input from "../../../Components/Form/Input";
+import InputArray from "../../../Components/Form/InputArray";
 
 const ProductCategoryForm = () => {
     const { token } = useContext(UserContext)
@@ -25,14 +28,30 @@ const ProductCategoryForm = () => {
     }
 
     return (
-        <>
-            <Form
+        <div className={"py-3"}>
+            <Button className={"btn-gray mb-5"} href={"/products"}>Volver</Button>
+
+            <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
-                buttonLabel={"Guardar"}
-                buttonVolverHref={"/categories"}
-            />
-        </>
+            >
+                {({ values, isSubmitting }) => (
+                    <Form className="flex flex-col gap-y-2">
+                        <div className={"grid grid-cols-12 gap-2"}>
+                            <div className={"col-span-12 md:col-span-6"}>
+                                <Input name={"name"} placeholder={"Nombre"} label={"Nombre"} />
+                            </div>
+                            <div className={"col-span-12 md:col-span-6"}>
+                                <Input name={"slug"} placeholder={"Slug"} label={"Slug"} />
+                            </div>
+                        </div>
+                        <Button type={"submit"} className={"btn-indigo-compact"} disabled={isSubmitting} >
+                            { isSubmitting ? "Cargando..." : "Guardar" }
+                        </Button>
+                    </Form>
+                )}
+            </Formik>
+        </div>
     )
 }
 

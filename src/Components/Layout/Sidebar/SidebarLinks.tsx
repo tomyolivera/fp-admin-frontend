@@ -15,6 +15,9 @@ const SidebarLinks = () => {
         <div>
             <SidebarElement title={"Dashboard"} href={"/dashboard"} Icon={MdSpaceDashboard} />
             <Divider />
+            <SidebarElement title={"Pedidos"} />
+            <SidebarElement title={"Pedidos"} href={"/orders"} Icon={FaTasks} />
+            <Divider />
             <SidebarElement title={"Productos"} />
             <SidebarElement title={"Productos"} href={"/products"} Icon={FaTasks} />
             <SidebarElement title={"Categorias"} href={"/categories"} Icon={MdCategory} />

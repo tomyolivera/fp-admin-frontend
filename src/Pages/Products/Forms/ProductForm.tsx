@@ -1,17 +1,14 @@
 import {useContext, useEffect, useState} from "react"
 import {useNavigate} from "react-router-dom"
+import {Field, Formik, Form, FieldArray} from "formik"
 import axios from "axios"
 
-import Form from "../../../Components/Form/Form"
 import UserContext from "../../../Context/UserContext"
 import {IProduct, IProductAttribute, IProductCategory} from "../../../Interfaces/IProduct"
-import {Field, Formik, Form as FormikForm, FieldArray} from "formik";
-import Input from "../../../Components/Form/Input";
-import Button from "../../../Components/Form/Button";
-import Loading from "../../../Components/Layout/Loading/Loading";
-import {FaMinus, FaPlus} from "react-icons/all";
-import InputArray from "../../../Components/Form/InputArraySelect";
-import ProductContext from "../../../Context/ProductContext";
+import Input from "../../../Components/Form/Input"
+import Button from "../../../Components/Form/Button"
+import InputArraySelect from "../../../Components/Form/InputArraySelect"
+import ProductContext from "../../../Context/ProductContext"
 
 const ProductForm = () => {
     const { token } = useContext(UserContext)
@@ -46,7 +43,7 @@ const ProductForm = () => {
                 onSubmit={handleSubmit}
             >
                 {({ values, isSubmitting }) => (
-                    <FormikForm className="flex flex-col gap-y-2">
+                    <Form className="flex flex-col gap-y-2">
                         <div className={"grid grid-cols-12 gap-2"}>
                             <div className={"col-span-12 md:col-span-6"}>
                                 <Input name={"sku"} placeholder={"SKU"} label={"SKU"} />
@@ -65,7 +62,7 @@ const ProductForm = () => {
                             </div>
                         </div>
 
-                        <InputArray
+                        <InputArraySelect
                             name={"categories"}
                             element={categories}
                             value={values.categories}
@@ -73,7 +70,7 @@ const ProductForm = () => {
                             label={"Categorias"}
                         />
 
-                        <InputArray
+                        <InputArraySelect
                             name={"attributes"}
                             element={attributes}
                             value={values.attributes}
@@ -84,7 +81,7 @@ const ProductForm = () => {
                         <Button type={"submit"} className={"btn-indigo-compact"} disabled={isSubmitting} >
                             { isSubmitting ? "Cargando..." : "Guardar" }
                         </Button>
-                    </FormikForm>
+                    </Form>
                 )}
             </Formik>
         </div>
