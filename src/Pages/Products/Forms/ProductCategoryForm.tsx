@@ -21,7 +21,7 @@ const ProductCategoryForm = () => {
     const handleSubmit = async (values: IProductCategory) => {
         categories.push({id: categories.length + 1, ...values})
         setCategories(categories)
-        await axios.post("http://localhost:8000/api/categories", values, {
+        await axios.post(`${import.meta.env.VITE_API_URL}/categories`, values, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
         navigate("/categories")

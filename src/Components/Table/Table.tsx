@@ -57,11 +57,11 @@ const Table = ({ head, createButtonLabel, hrefCreateButton, Element, elements }:
             <div className="flex flex-col mt-5">
                 <div className="overflow-x-auto">
                     <div className="w-full inline-block align-middle">
-                        <div className="overflow-hidden border rounded-b-lg">
-                            <table className={"table-fixed min-w-full divide-y divide-gray-200"}>
+                        <div className="overflow-hidden border rounded-b-lg dark:border-gray-600">
+                            <table className={"dark:text-gray-300 min-w-full divide-y divide-gray-200 dark:divide-gray-600"}>
                                 <TableHead head={head} />
 
-                                <tbody className={"divide-y divide-gray-200 text-center"}>
+                                <tbody className={"divide-y divide-gray-200 dark:divide-gray-600 text-center"}>
                                     {
                                         currentElements.map((element: any, i: number) => (
                                             <Element key={i} {...element} />

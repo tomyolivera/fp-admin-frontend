@@ -1,7 +1,7 @@
 import {Field, FieldArray} from "formik";
-import {IProductCategory} from "../../Interfaces/IProduct";
-import Button from "./Button";
-import {FaMinus, FaPlus} from "react-icons/all";
+import {FaMinus, FaPlus} from "react-icons/all"
+import {IProductCategory} from "../../Interfaces/IProduct"
+import Button from "./Button"
 
 interface InputArraySelectProps {
     name: string

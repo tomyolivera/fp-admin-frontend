@@ -8,26 +8,29 @@ import {ModalProvider} from "./Context/ModalContext"
 import Header from "./Components/Layout/Header/Header"
 import Sidebar from "./Components/Layout/Sidebar/Sidebar"
 import {ProductProvider} from "./Context/ProductContext";
+import {ThemeProvider} from "./Context/ThemeContext";
 
 const App = () => {
     return (
-        <UserProvider>
-            <SidebarProvider>
-                <ModalProvider>
-                    <ProductProvider>
+        <ThemeProvider>
+            <UserProvider>
+                <SidebarProvider>
+                    <ModalProvider>
                         <div className={"flex"}>
                             <Sidebar />
                             <div className={"w-full"}>
                                 <Header />
                                 <div className={"px-10 mx-auto mt-5"}>
-                                    <AppRouter />
+                                    <ProductProvider>
+                                        <AppRouter />
+                                    </ProductProvider>
                                 </div>
                             </div>
                         </div>
-                    </ProductProvider>
-                </ModalProvider>
-            </SidebarProvider>
-        </UserProvider>
+                    </ModalProvider>
+                </SidebarProvider>
+            </UserProvider>
+        </ThemeProvider>
     )
 }
 

@@ -8,6 +8,9 @@ const Home = lazy(() => import("./Pages/Home"))
 const Dashboard = lazy(() => import("./Pages/Dashboard"))
 const Login = lazy(() => import("./Pages/Login"))
 
+{/* Orders */}
+const Orders = lazy(() => import("./Pages/Orders/Files/Orders"))
+
 {/* Products & Categories & Attributes & Forms */}
 const Products = lazy(() => import("./Pages/Products/Files/Products"))
 const ProductForm = lazy(() => import("./Pages/Products/Forms/ProductForm"))
@@ -19,7 +22,6 @@ const ProductAttributeForm = lazy(() => import("./Pages/Products/Forms/ProductAt
 {/* Components */}
 import Modal from "./Components/Layout/Modal/Modal"
 import Loading from "./Components/Layout/Loading/Loading"
-import ProductContext from "./Context/ProductContext"
 
 const AppRouter = () => {
     const { isAuthenticated } = useContext(UserContext)
@@ -36,15 +38,18 @@ const AppRouter = () => {
                     {/* <Route path="*" element={<p>Error 404</p>} /> */}
 
                     {
-                        isAuthenticated && <>
+                        isAuthenticated &&
+                        <>
+                            {/* Orders */}
+                            <Route path="/orders" element={<Orders />}/>
+
+
                             {/* Products */}
                             <Route path="/products" element={<Products />}/>
                             <Route path="/products/add" element={<ProductForm />}/>
-
                             {/* Product Categories */}
                             <Route path="/categories" element={<ProductCategories />}/>
                             <Route path="/categories/add" element={<ProductCategoryForm />}/>
-
                             {/* Product Attributes */}
                             <Route path="/attributes" element={<ProductAttributes />}/>
                             <Route path="/attributes/add" element={<ProductAttributeForm />}/>

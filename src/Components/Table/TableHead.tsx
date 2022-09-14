@@ -3,7 +3,7 @@ const TableHead = ({ head }: { head: Array<string> }) => {
         head.push("Acciones")
 
     return (
-        <thead className={"bg-gray-50 sticky top-0"}>
+        <thead className={"bg-gray-50 dark:bg-gray-900 sticky top-0"}>
             <tr>
                 {
                     head.map((item, i) => (

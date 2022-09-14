@@ -17,9 +17,9 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: Paginat
     }
 
     return (
-        <div>
+        <div className={"text-gray-700 dark:text-gray-300"}>
             <div>
-                <p className='text-sm text-gray-700'>
+                <p className='text-sm'>
                     Showing
                     <span className='font-medium'>
                         {" "} {currentPage * postsPerPage - (postsPerPage - 1)} {" "}
@@ -32,7 +32,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: Paginat
                 </p>
             </div>
             <nav className='block'>
-                <ul className='flex pl-0 rounded list-none flex-wrap border-2'>
+                <ul className='flex pl-0 rounded list-none flex-wrap border-2 dark:border-gray-600'>
                     <li>
                         {pageNumbers.map((number, i) => (
                             <span key={i}>

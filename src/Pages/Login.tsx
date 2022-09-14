@@ -2,7 +2,7 @@ import {useContext, useState} from "react"
 import {useNavigate} from "react-router-dom"
 import axios from "axios"
 
-import Form from "../Components/Form/Form"
+import FastForm from "../Components/Form/FastForm"
 import UserContext from "../Context/UserContext"
 
 interface ILogin {
@@ -39,7 +39,7 @@ const Login = () => {
 
     return (
         <>
-            <Form
+            <FastForm
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
                 buttonLabel={"Login"}

@@ -37,7 +37,7 @@ interface ProductProviderProps {
 }
 
 export const ProductProvider = ({ children }: ProductProviderProps) => {
-    const { token } = useContext(UserContext)
+    const { token, isAuthenticated } = useContext(UserContext)
     const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState<IProduct[]>([])
     const [categories, setCategories] = useState<IProductCategory[]>([])
@@ -65,17 +65,20 @@ export const ProductProvider = ({ children }: ProductProviderProps) => {
     }
 
     useEffect(() => {
-        (async () => {
-            await getProducts()
-            await getCategories()
-            await getAttributes()
-            setLoading(false)
-        })()
-    },[])
+        if(isAuthenticated){
+            (async () => {
+                setLoading(true)
+                await getProducts()
+                await getCategories()
+                await getAttributes()
+                setLoading(false)
+            })()
+        }else setLoading(false)
+    },[isAuthenticated])
 
     return (
         <ProductContext.Provider value={{ loading, products, categories, attributes, setProducts, setCategories, setAttributes }}>
-            {!loading && children}
+            {children}
         </ProductContext.Provider>
     )
 }

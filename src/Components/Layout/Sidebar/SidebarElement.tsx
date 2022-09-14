@@ -25,13 +25,13 @@ const SidebarElement = ({ title, description, href, Icon, ...props }: SidebarEle
         <Link to={href}
               onClick={() => setLocation(href)}
               className={`
-                  p-2.5 mt-3 flex items-center rounded-md px-4 cursor-pointer text-white
+                  p-2.5 mt-3 flex items-center rounded-md px-4 cursor-pointer text-white dark:text-gray-300
                   ${_location.split("/")[1] === href.split("/")[1] && "bg-gray-700"}
                   hover:bg-gray-700
               `}
         >
             <Icon />
-            <span className="text-[15px] ml-4 text-gray-200 font-bold">{title}</span>
+            <span className="text-[15px] ml-4 text-gray-200 dark:text-gray-400 font-bold">{title}</span>
         </Link>
     );
 }

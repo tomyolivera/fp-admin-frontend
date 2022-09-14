@@ -10,10 +10,9 @@ interface FormProps {
     onSubmit: (values: any) => Promise<void>
     buttonLabel: string
     buttonVolverHref?: string
-    children: ReactNode
 }
 
-const Form = ({ initialValues, onSubmit, buttonLabel, buttonVolverHref }: FormProps) => {
+const FastForm = ({ initialValues, onSubmit, buttonLabel, buttonVolverHref }: FormProps) => {
     return (
         <>
             { buttonVolverHref && <Button className={"btn-gray mb-5"} href={buttonVolverHref}>Volver</Button> }
@@ -34,7 +33,6 @@ const Form = ({ initialValues, onSubmit, buttonLabel, buttonVolverHref }: FormPr
                                         label={Object.keys(values)[i]}
                                         key={i}
                                         name={Object.keys(values)[i]}
-                                        arr={value}
                                     />
                                 ))
                             }
@@ -49,4 +47,4 @@ const Form = ({ initialValues, onSubmit, buttonLabel, buttonVolverHref }: FormPr
     )
 }
 
-export default Form
+export default FastForm

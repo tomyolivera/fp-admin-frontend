@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+label {
+    @apply dark:text-gray-400
+}
+
 .input { @apply
     appearance-none block rounded w-full py-3 px-4 leading-tight
     border border-gray-200
@@ -9,9 +13,10 @@
     disabled:bg-zinc-100
     placeholder:text-gray-500
     focus:bg-white focus:border-gray-500 focus:outline-none
+    dark:bg-gray-700 dark:text-gray-400 dark:border-gray-600
 }
 
-.btn-white {@apply hover:bg-gray-200 text-gray-900 disabled:bg-gray-100}
+.btn-white {@apply hover:bg-gray-200 text-gray-900 dark:hover:bg-gray-500 dark:text-gray-300 disabled:bg-gray-100 dark:disabled:bg-gray-600}
 .btn-blue {@apply bg-blue-200 hover:bg-blue-300 text-blue-900 disabled:bg-blue-100}
 .btn-red {@apply bg-red-200 hover:bg-red-400 text-red-900 disabled:bg-red-100}
 .btn-green {@apply bg-green-300 hover:bg-green-500 text-green-900 disabled:bg-green-100}
