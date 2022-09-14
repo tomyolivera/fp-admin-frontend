@@ -13,10 +13,10 @@ const SidebarLinks = () => {
 
     return (
         <div>
-            <SidebarElement title={"Dashboard"} href={"/dashboard"} Icon={MdSpaceDashboard} />
+            <SidebarElement title={"Dashboard"} href={"/dashboard"} Icon={MdSpaceDashboard} disabled />
             <Divider />
             <SidebarElement title={"Pedidos"} />
-            <SidebarElement title={"Pedidos"} href={"/orders"} Icon={FaTasks} />
+            <SidebarElement title={"Pedidos"} href={"/orders"} Icon={FaTasks} disabled />
             <Divider />
             <SidebarElement title={"Productos"} />
             <SidebarElement title={"Productos"} href={"/products"} Icon={FaTasks} />
@@ -24,7 +24,7 @@ const SidebarLinks = () => {
             <SidebarElement title={"Atributos"} href={"/attributes"} Icon={AiFillTags} />
             <Divider />
             <SidebarElement title={"Administración"} />
-            <SidebarElement title={"Costos"} href={"/bills"} Icon={FaMoneyBillAlt} />
+            <SidebarElement title={"Costos"} href={"/bills"} Icon={FaMoneyBillAlt} disabled />
         </div>
     )
 }

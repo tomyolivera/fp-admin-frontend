@@ -20,7 +20,7 @@ interface UserProviderProps {
 }
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-    const [user, setUser] = useState(null)
+    const [user] = useState(null)
     const [token, setToken] = useState<string>(localStorage.getItem("token") || "")
     const [isAuthenticated, setIsAuthenticated] = useState(false)
 

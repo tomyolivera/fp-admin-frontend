@@ -7,9 +7,10 @@ interface SidebarElementProps {
     description?: string|boolean
     href?: string
     Icon?: FC
+    disabled?: boolean
 }
 
-const SidebarElement = ({ title, description, href, Icon, ...props }: SidebarElementProps) => {
+const SidebarElement = ({ title, description, href, Icon, disabled }: SidebarElementProps) => {
     const { _location, setLocation } = useContext(SidebarContext)
 
     if(!href || !Icon) {
@@ -21,13 +22,17 @@ const SidebarElement = ({ title, description, href, Icon, ...props }: SidebarEle
         )
     }
 
+    const handleLinkClick = () => {
+        if(disabled) return
+        setLocation(href)
+    }
+
     return (
-        <Link to={href}
-              onClick={() => setLocation(href)}
+        <Link to={disabled ? _location : href}
               className={`
                   p-2.5 mt-3 flex items-center rounded-md px-4 cursor-pointer text-white dark:text-gray-300
                   ${_location.split("/")[1] === href.split("/")[1] && "bg-gray-700"}
-                  hover:bg-gray-700
+                  hover:bg-gray-700 ${disabled && "hover:bg-gray-800 bg-gray-800 cursor-not-allowed"}
               `}
         >
             <Icon />

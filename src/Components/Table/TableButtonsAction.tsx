@@ -10,10 +10,10 @@ interface TableButtonsActionProps {
 const TableButtonsAction = () => {
     return (
         <div className={"flex justify-center gap-2"}>
-            <Button onClick={() => {}} className={"btn-yellow text-xl"}>
+            <Button disabled={true} onClick={() => {}} className={"btn-yellow-compact text-xl"}>
                 <MdEdit />
             </Button>
-            <Button onClick={() => {}} className={"btn-red text-xl"}>
+            <Button disabled={true} onClick={() => {}} className={"btn-red-compact text-xl"}>
                 <IoMdTrash />
             </Button>
         </div>

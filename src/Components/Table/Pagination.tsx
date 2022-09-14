@@ -46,7 +46,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: Paginat
                                     className={classNames(`
                                     rounded-none
                                         ${currentPage === number
-                                        ? "btn-blue-compact border-none"
+                                        ? "btn-blue-compact"
                                         : "btn-white"}
                                     `)}
                                     key={i}
