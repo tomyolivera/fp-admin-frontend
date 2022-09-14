@@ -25,7 +25,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: Paginat
                         {" "} {currentPage * postsPerPage - (postsPerPage - 1)} {" "}
                     </span>
                     to
-                    <span className='font-medium'> {currentPage * postsPerPage} </span>
+                    <span className='font-medium'> {currentPage === pageNumbers.length ? totalPosts : currentPage * postsPerPage} </span>
                     of
                     <span className='font-medium'> {totalPosts} </span>
                     results

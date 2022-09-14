@@ -10,13 +10,13 @@ import Input from "../../../Components/Form/Input";
 import Button from "../../../Components/Form/Button";
 import Loading from "../../../Components/Layout/Loading/Loading";
 import {FaMinus, FaPlus} from "react-icons/all";
+import InputArray from "../../../Components/Form/InputArraySelect";
+import ProductContext from "../../../Context/ProductContext";
 
 const ProductForm = () => {
     const { token } = useContext(UserContext)
+    const { products, categories, attributes, setProducts } = useContext(ProductContext)
     const navigate = useNavigate()
-    const [categories, setCategories] = useState([])
-    const [attributes, setAttributes] = useState([])
-    const [loading, setLoading] = useState(true)
     const [initialValues] = useState<IProduct>({
         sku: "",
         name: "",
@@ -28,106 +28,58 @@ const ProductForm = () => {
         attributes: [""]
     })
 
-    const getCategories = async () => {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/categories`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        })
-        setCategories(res.data.data)
-    }
-
-    const getAttributes = async () => {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/attributes`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        })
-        setAttributes(res.data.data)
-    }
-
-    useEffect(() => {
-        (async () => {
-            await getCategories()
-            await getAttributes()
-            setLoading(false)
-        })()
-    }, [])
-
-    const handleSubmit = async (values: any) => {
+    const handleSubmit = async (values: IProduct) => {
+        products.push(values)
+        setProducts(products)
         await axios.post(`${import.meta.env.VITE_API_URL}/products`, values, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
         navigate("/products")
     }
 
-    if(loading) return <Loading />
-
     return (
         <div className={"py-3"}>
+            <Button className={"btn-gray mb-5"} href={"/products"}>Volver</Button>
+
             <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
             >
                 {({ values, isSubmitting }) => (
                     <FormikForm className="flex flex-col gap-y-2">
-                        <Input name={"sku"} placeholder={"SKU"} />
-                        <Input name={"name"} placeholder={"Nombre"} />
-                        <Input type={"number"} name={"price"} placeholder={"$1000"} />
-                        <Input type={"number"} name={"list_price"} placeholder={"$1000"} />
+                        <div className={"grid grid-cols-12 gap-2"}>
+                            <div className={"col-span-12 md:col-span-6"}>
+                                <Input name={"sku"} placeholder={"SKU"} label={"SKU"} />
+                            </div>
+                            <div className={"col-span-12 md:col-span-6"}>
+                                <Input name={"name"} placeholder={"Nombre"} label={"Nombre"} />
+                            </div>
+                        </div>
 
-                        <label htmlFor={"categories"} className={"text-sm font-medium text-gray-700"}>Categorias</label>
-                        <FieldArray name={"categories"}>
-                            {({ push, remove }) => (
-                                <div>
-                                    {values.categories.map((category: IProductCategory, index: number) => (
-                                        <div key={index}>
-                                            <p>Categoria {index + 1}</p>
-                                            <Field name={`categories.${index}`} as={"select"} className={"my-2 input"}>
-                                                <option value={""}>Seleccionar categoría</option>
-                                                {
-                                                    categories.map(({name, id, slug}: IProductCategory) => (
-                                                        <option key={id} value={id}>{name}</option>
-                                                    ))
-                                                }
-                                            </Field>
-                                            {
-                                                index > 0 && <Button className={"btn-red mt-2"} type="button" onClick={() => remove(index)}>
-                                                <FaMinus />
-                                                </Button>
-                                            }
-                                        </div>
-                                    ))}
-                                    <Button className={"btn-green my-2"} type="button" onClick={() => push("")}>
-                                        <FaPlus />
-                                    </Button>
-                                </div>
-                            )}
-                        </FieldArray>
-                        <label htmlFor={"attributes"} className={"text-sm font-medium text-gray-700"}>Atributos</label>
-                        <FieldArray name={"attributes"}>
-                            {({ push, remove }) => (
-                                <div>
-                                    {values.attributes.map((attribute: IProductAttribute, index: number) => (
-                                        <div key={index}>
-                                            <p>Atributo {index + 1}</p>
-                                            <Field name={`attributes.${index}`} as={"select"} className={"my-2 input"}>
-                                                <option value={""}>Seleccionar atributo</option>
-                                                {
-                                                    attributes.map(({name, id}: IProductAttribute) => (
-                                                        <option key={id} value={id}>{name}</option>
-                                                    ))
-                                                }
-                                            </Field>
-                                            {
-                                                index > 0 && <Button className={"btn-red mt-2"} type="button" onClick={() => remove(index)}>
-                                                    <FaMinus />
-                                                </Button>
-                                            }
-                                        </div>
-                                    ))}
-                                    <Button className={"btn-green my-2"} type="button" onClick={() => push("")}>
-                                        <FaPlus />
-                                    </Button>
-                                </div>
-                            )}
-                        </FieldArray>
+                        <div className={"grid grid-cols-12 gap-2"}>
+                            <div className={"col-span-12 md:col-span-6"}>
+                                <Input type={"number"} name={"price"} label={"Precio"} placeholder={"$1000"} />
+                            </div>
+                            <div className={"col-span-12 md:col-span-6"}>
+                                <Input type={"number"} name={"list_price"} label={"Precio de lista"} placeholder={"$1000"} />
+                            </div>
+                        </div>
+
+                        <InputArray
+                            name={"categories"}
+                            element={categories}
+                            value={values.categories}
+                            sp_name={"categoria"}
+                            label={"Categorias"}
+                        />
+
+                        <InputArray
+                            name={"attributes"}
+                            element={attributes}
+                            value={values.attributes}
+                            sp_name={"atributo"}
+                            label={"Atributos"}
+                        />
 
                         <Button type={"submit"} className={"btn-indigo-compact"} disabled={isSubmitting} >
                             { isSubmitting ? "Cargando..." : "Guardar" }
@@ -138,12 +90,5 @@ const ProductForm = () => {
         </div>
     )
 }
-
-        // <Form
-        //     initialValues={initialValues}
-        //     onSubmit={handleSubmit}
-        //     buttonLabel={"Guardar"}
-        //     buttonVolverHref={"/products"}
-        // />
 
 export default ProductForm

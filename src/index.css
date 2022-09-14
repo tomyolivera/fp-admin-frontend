@@ -5,7 +5,9 @@
 .input { @apply
     appearance-none block rounded w-full py-3 px-4 leading-tight
     border border-gray-200
-    bg-gray-200 text-gray-700
+    bg-gray-200 text-gray-900
+    disabled:bg-zinc-100
+    placeholder:text-gray-500
     focus:bg-white focus:border-gray-500 focus:outline-none
 }
 

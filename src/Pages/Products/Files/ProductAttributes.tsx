@@ -5,20 +5,11 @@ import UserContext from "../../../Context/UserContext"
 import Table from "../../../Components/Table/Table"
 import ProductAttributeTable from "../../../Components/Products/ProductAttributeTable"
 import Loading from "../../../Components/Layout/Loading/Loading"
-import {IProductAttribute} from "../../../Interfaces/IProduct"
+import ProductContext from "../../../Context/ProductContext";
 
 const ProductAttributes = () => {
-    const { token } = useContext(UserContext)
-    const [attrs, setAttrs] = useState<IProductAttribute[]>([])
-    const [loading, setLoading] = useState(true)
+    const { loading, attributes } = useContext(ProductContext)
     const [thead] = useState(["ID", "Slug", "Nombre", "Valores"])
-
-    const getAttrs = async () => {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/attributes`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        })
-        setAttrs(res.data.data)
-    }
 
     const handleEdit = (id: number) => {
 
@@ -27,13 +18,6 @@ const ProductAttributes = () => {
     const handleDelete = (id: number) => {
 
     }
-
-    useEffect(() => {
-        (async () => {
-            await getAttrs()
-            setLoading(false)
-        })()
-    }, [])
 
     if(loading) return <Loading />
 
@@ -44,7 +28,7 @@ const ProductAttributes = () => {
                 createButtonLabel={"Atributo"}
                 hrefCreateButton={"/attributes/add"}
                 Element={ProductAttributeTable}
-                elements={attrs}
+                elements={attributes}
             />
         </div>
     )

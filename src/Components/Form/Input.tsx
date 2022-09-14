@@ -4,38 +4,34 @@ import Button from "./Button";
 import {FaMinus, FaPlus} from "react-icons/all"
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-    name: string,
+    name: string
+    label: string
     arr?: any[]
 }
 
-const InputForm = ({ name, ...props }: InputProps) => (
-    <>
+const InputForm = ({ name, label, ...props }: InputProps) => (
+    <div>
         <label htmlFor={name} className="text-sm font-medium text-gray-700">
-            { name.toUpperCase() }
+            { label.toUpperCase() }
         </label>
         <Field
             id={name}
             name={name}
             autoComplete="off"
-            className={`
-                appearance-none block rounded w-full py-3 px-4 leading-tight
-                border border-gray-200
-                bg-gray-200 text-gray-700
-                focus:bg-white focus:border-gray-500 focus:outline-none
-            `}
+            className={`input`}
             {...props}
         />
-    </>
+    </div>
 )
 
-const Input = ({ name, type, arr, ...props }: InputProps) => {
+const Input = ({ name, label, type, arr, ...props }: InputProps) => {
     if(name.endsWith("s")) return (
         <FieldArray name={name}>
             {({ push, remove }) => (
                 <div>
                     {arr && arr.length >= 0 && arr.map((value: any, index: number) => (
                             <div key={index}>
-                                <InputForm name={`${name}.${index}`} type={type} />
+                                <InputForm label={label} name={`${name}.${index}`} type={type} />
                                 {
                                     index > 0 && <Button className={"btn-red mt-2"} type="button" onClick={() => remove(index)}>
                                         <FaMinus />
@@ -54,7 +50,7 @@ const Input = ({ name, type, arr, ...props }: InputProps) => {
 
     return (
         <>
-            <InputForm name={name} type={type} {...props} />
+            <InputForm label={label} name={name} type={type} {...props} />
         </>
     )
 }

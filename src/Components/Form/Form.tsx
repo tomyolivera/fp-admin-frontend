@@ -31,6 +31,7 @@ const Form = ({ initialValues, onSubmit, buttonLabel, buttonVolverHref }: FormPr
                             {
                                 Object.values(values).map((value, i) => (
                                     <Input
+                                        label={Object.keys(values)[i]}
                                         key={i}
                                         name={Object.keys(values)[i]}
                                         arr={value}

@@ -1,5 +1,5 @@
 import TableHead from "./TableHead"
-import {FC, ReactNode, useState} from "react"
+import {FC, ReactNode, useEffect, useState} from "react"
 import Button from "../Form/Button";
 import Pagination from "./Pagination";
 
@@ -42,7 +42,7 @@ const Table = ({ head, createButtonLabel, hrefCreateButton, Element, elements }:
             <div className="flex flex-col mt-5">
                 <div className="overflow-x-auto">
                     <div className="w-full inline-block align-middle">
-                        <div className="overflow-hidden border rounded-lg">
+                        <div className="overflow-hidden border rounded-b-lg">
                             <table className={"table-fixed min-w-full divide-y divide-gray-200"}>
                                 <TableHead head={head} />
 

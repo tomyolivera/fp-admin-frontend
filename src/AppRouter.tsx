@@ -19,34 +19,35 @@ const ProductAttributeForm = lazy(() => import("./Pages/Products/Forms/ProductAt
 {/* Components */}
 import Modal from "./Components/Layout/Modal/Modal"
 import Loading from "./Components/Layout/Loading/Loading"
+import ProductContext from "./Context/ProductContext"
 
 const AppRouter = () => {
     const { isAuthenticated } = useContext(UserContext)
     const { modalOpen, modalData } = useContext(ModalContext)
 
-    return(
+    return (
         <>
             { modalOpen && <Modal { ...modalData } /> }
             <Suspense fallback={<Loading />}>
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/" element={<Home />}/>
+                    <Route path="/dashboard" element={<Dashboard />}/>
+                    <Route path="/login" element={<Login />}/>
                     {/* <Route path="*" element={<p>Error 404</p>} /> */}
 
                     {
                         isAuthenticated && <>
                             {/* Products */}
-                            <Route path="/products" element={<Products />} />
-                            <Route path="/products/add" element={<ProductForm />} />
+                            <Route path="/products" element={<Products />}/>
+                            <Route path="/products/add" element={<ProductForm />}/>
 
                             {/* Product Categories */}
-                            <Route path="/categories" element={<ProductCategories />} />
-                            <Route path="/categories/add" element={<ProductCategoryForm />} />
+                            <Route path="/categories" element={<ProductCategories />}/>
+                            <Route path="/categories/add" element={<ProductCategoryForm />}/>
 
                             {/* Product Attributes */}
-                            <Route path="/attributes" element={<ProductAttributes />} />
-                            <Route path="/attributes/add" element={<ProductAttributeForm />} />
+                            <Route path="/attributes" element={<ProductAttributes />}/>
+                            <Route path="/attributes/add" element={<ProductAttributeForm />}/>
                         </>
                     }
                 </Routes>

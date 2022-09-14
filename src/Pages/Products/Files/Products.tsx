@@ -5,19 +5,11 @@ import {IProduct} from "../../../Interfaces/IProduct"
 import Table from "../../../Components/Table/Table"
 import ProductTable from "../../../Components/Products/ProductTable"
 import Loading from "../../../Components/Layout/Loading/Loading"
+import ProductContext from "../../../Context/ProductContext";
 
 const Products = () => {
-    const { token } = useContext(UserContext)
-    const [products, setProducts] = useState<IProduct[]>([])
+    const { loading, products } = useContext(ProductContext)
     const [thead] = useState(["SKU", "Nombre", "Precio", "Precio de lista"])
-    const [loading, setLoading] = useState(true)
-
-    const getProducts = async () => {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/products`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        })
-        setProducts(res.data.data)
-    }
 
     const handleEdit = (id: number) => {
 
@@ -26,13 +18,6 @@ const Products = () => {
     const handleDelete = (id: number) => {
 
     }
-
-    useEffect(() => {
-        (async () => {
-            await getProducts()
-            setLoading(false)
-        })()
-    }, [])
 
     if(loading) return <Loading />
 
