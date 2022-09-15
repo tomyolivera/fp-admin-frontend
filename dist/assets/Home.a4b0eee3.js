@@ -1,1 +1,0 @@
-import{r as s,U as r,j as n,a as t}from"./index.d9eb7f30.js";const o=()=>{const{isAuthenticated:e}=s.exports.useContext(r);return n("div",{children:[t("h1",{children:"Home"}),e?t("h1",{children:"Authenticated"}):t("h1",{children:"Not Authenticated"})]})};export{o as default};
