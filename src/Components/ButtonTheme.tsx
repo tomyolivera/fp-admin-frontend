@@ -8,7 +8,7 @@ const ButtonTheme = () => {
 
     return (
         <Button
-            className={"btn-red"}
+            className={"btn-yellow"}
             onClick={() => setThemeMode(theme === "dark" ? "light" : "dark")}>
             {theme === "dark" ? <FaSun /> : <FaMoon />}
         </Button>

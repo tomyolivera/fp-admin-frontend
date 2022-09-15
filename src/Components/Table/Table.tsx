@@ -2,7 +2,6 @@ import TableHead from "./TableHead"
 import {FC, ReactNode, useEffect, useState} from "react"
 import Button from "../Form/Button";
 import Pagination from "./Pagination";
-import ReactPaginate from "react-paginate";
 
 interface TableProps {
     head: Array<string>
@@ -14,7 +13,7 @@ interface TableProps {
 
 const Table = ({ head, createButtonLabel, hrefCreateButton, Element, elements }: TableProps) => {
     const [currentPage, setCurrentPage] = useState(1)
-    const [postsPerPage] = useState(5)
+    const [postsPerPage] = useState(6)
 
     const indexOfLastPost = currentPage * postsPerPage
     const indexOfFirstPost = indexOfLastPost - postsPerPage

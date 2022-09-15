@@ -32,7 +32,7 @@ const SidebarElement = ({ title, description, href, Icon, disabled }: SidebarEle
               className={`
                   p-2.5 mt-3 flex items-center rounded-md px-4 cursor-pointer text-white dark:text-gray-300
                   ${_location.split("/")[1] === href.split("/")[1] && "bg-gray-700"}
-                  hover:bg-gray-700 ${disabled && "hover:bg-gray-800 bg-gray-800 cursor-not-allowed"}
+                  hover:bg-gray-700 ${disabled && "hover:bg-neutral-800 bg-neutral-800 cursor-not-allowed"}
               `}
         >
             <Icon />
