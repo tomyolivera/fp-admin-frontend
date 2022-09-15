@@ -10,19 +10,14 @@ interface ILogin {
     password: string
 }
 
-const user = {
-    email: "",
-    clave: ""
-}
-
 const Login = () => {
     const navigate = useNavigate()
     const {setToken} = useContext(UserContext)
     const [error, setError] = useState<string>("")
 
     const initialValues: ILogin = {
-        email: "XXXXXXXXXXX",
-        password: "XXXXXXXXXXX"
+        email: "matibjolivera@gmail.com",
+        password: "Tuvieja123!"
     }
 
     const handleSubmit = async (values: ILogin) => {
