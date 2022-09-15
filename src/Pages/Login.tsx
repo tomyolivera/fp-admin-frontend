@@ -5,6 +5,11 @@ import axios from "axios"
 import FastForm from "../Components/Form/FastForm"
 import UserContext from "../Context/UserContext"
 
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+
 interface ILogin {
     email: string
     password: string
@@ -17,17 +22,17 @@ const user = {
 
 const Login = () => {
     const navigate = useNavigate()
-    const { setToken } = useContext(UserContext)
+    const {setToken} = useContext(UserContext)
     const [error, setError] = useState<string>("")
 
     const initialValues: ILogin = {
-        email: "matibjolivera@gmail.com",
-        password: "Tuvieja123!"
+        email: "XXXXXXXXXXX",
+        password: "XXXXXXXXXXX"
     }
 
     const handleSubmit = async (values: ILogin) => {
         try {
-            const res = await axios.post("http://localhost:8000/api/login", values)
+            const res = await axios.post(process.env.API_URL + "/api/login", values)
 
             localStorage.setItem("token", res.data.data.token)
             setToken(res.data.data.token)
@@ -44,7 +49,7 @@ const Login = () => {
                 onSubmit={handleSubmit}
                 buttonLabel={"Login"}
             />
-            { error && <span className="text-red-500">{error}</span> }
+            {error && <span className="text-red-500">{error}</span>}
         </>
     )
 }

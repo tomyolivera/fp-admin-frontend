@@ -9,6 +9,9 @@ import ProductContext from "../../../Context/ProductContext"
 import Button from "../../../Components/Form/Button"
 import Input from "../../../Components/Form/Input"
 import InputArray from "../../../Components/Form/InputArray"
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const ProductAttributeForm = () => {
     const navigate = useNavigate()
@@ -23,7 +26,7 @@ const ProductAttributeForm = () => {
     const handleSubmit = async (values: IProductAttribute) => {
         attributes.push({id: attributes.length + 1, ...values})
         setAttributes(attributes)
-        await axios.post("http://localhost:8000/api/attributes", values, {
+        await axios.post(process.env.API_URL + "/api/attributes", values, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
         navigate("/attributes")
