@@ -42,14 +42,9 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: Paginat
                                         Prev
                                     </Button>
                                 }
-                                <Button onClick={() => paginate(number)}
-                                    className={classNames(`
-                                    rounded-none
-                                        ${currentPage === number
-                                        ? "btn-blue-compact"
-                                        : "btn-white"}
-                                    `)}
-                                    key={i}
+                                <Button
+                                    onClick={() => paginate(number)}
+                                    className={classNames(`rounded-none ${currentPage === number ? "btn-blue-compact" : "btn-white"}`)}
                                 >
                                     {number}
                                 </Button>
