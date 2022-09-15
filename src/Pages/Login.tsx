@@ -27,7 +27,7 @@ const Login = () => {
 
     const handleSubmit = async (values: ILogin) => {
         try {
-            const res = await axios.post("http://localhost:8000/api/login", values)
+            const res = await axios.post(`${import.meta.env.VITE_URL_API}/login`, values)
 
             localStorage.setItem("token", res.data.data.token)
             setToken(res.data.data.token)
