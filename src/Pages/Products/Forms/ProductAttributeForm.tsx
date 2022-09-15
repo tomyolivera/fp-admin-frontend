@@ -23,7 +23,7 @@ const ProductAttributeForm = () => {
     const handleSubmit = async (values: IProductAttribute) => {
         attributes.push({id: attributes.length + 1, ...values})
         setAttributes(attributes)
-        await axios.post("http://localhost:8000/api/attributes", values, {
+        await axios.post(process.env.API_URL + "/api/attributes", values, {
             headers: { 'Authorization': `Bearer ${token}` }
         })
         navigate("/attributes")

@@ -17,12 +17,12 @@ const user = {
 
 const Login = () => {
     const navigate = useNavigate()
-    const { setToken } = useContext(UserContext)
+    const {setToken} = useContext(UserContext)
     const [error, setError] = useState<string>("")
 
     const initialValues: ILogin = {
-        email: "matibjolivera@gmail.com",
-        password: "Tuvieja123!"
+        email: "XXXXXXXXXXX",
+        password: "XXXXXXXXXXX"
     }
 
     const handleSubmit = async (values: ILogin) => {
@@ -44,7 +44,7 @@ const Login = () => {
                 onSubmit={handleSubmit}
                 buttonLabel={"Login"}
             />
-            { error && <span className="text-red-500">{error}</span> }
+            {error && <span className="text-red-500">{error}</span>}
         </>
     )
 }
