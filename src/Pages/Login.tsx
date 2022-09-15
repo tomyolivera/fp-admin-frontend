@@ -5,11 +5,6 @@ import axios from "axios"
 import FastForm from "../Components/Form/FastForm"
 import UserContext from "../Context/UserContext"
 
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-
 interface ILogin {
     email: string
     password: string

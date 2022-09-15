@@ -9,9 +9,6 @@ import ProductContext from "../../../Context/ProductContext"
 import Button from "../../../Components/Form/Button"
 import Input from "../../../Components/Form/Input"
 import InputArray from "../../../Components/Form/InputArray"
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 const ProductAttributeForm = () => {
     const navigate = useNavigate()
